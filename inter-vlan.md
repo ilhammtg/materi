@@ -1,23 +1,20 @@
-```markdown
-# Cisco Packet Tracer VLAN + DHCP + Static Routing Setup
+# 🧠 Cisco Packet Tracer VLAN + DHCP + Static Routing Setup
 **Topologi: 3 Router + 4 Switch + 8 PC**
 
 ---
 
-## Topologi Ringkas
+## 🗺️ Topologi Ringkas
 
 ```
-
 [PC0][PC1]──SW-LEFT──R-LEFT──R-MID──R-RIGHT──SW-RIGHT-V10──[PC4][PC5]
-└──SW-RIGHT-V20──[PC6][PC7]
-│
-└──SW-MID──(VLAN10 & VLAN20)
-
-````
+                                            └──SW-RIGHT-V20──[PC6][PC7]
+                    │
+                    └──SW-MID──(VLAN10 & VLAN20)
+```
 
 ---
 
-## 1. IP Address Planning
+## ⚙️ 1. IP Address Planning
 
 | Device / Segment | VLAN | Network/Subnet | Gateway (Router) | Notes |
 |------------------|-------|----------------|------------------|--------|
@@ -33,10 +30,9 @@
 
 ---
 
-## 2. Konfigurasi SWITCH PALING KIRI (SW-LEFT)
+## ⚙️ 2. SWITCH PALING KIRI (SW-LEFT)
 
-```
-bash
+```bash
 enable
 conf t
 vlan 10
@@ -52,11 +48,11 @@ int fa0/3
  switchport trunk allowed vlan 10
 end
 wr
-````
+```
 
 ---
 
-## 3. Konfigurasi ROUTER PALING KIRI (R-LEFT)
+## ⚙️ 3. ROUTER PALING KIRI (R-LEFT)
 
 ```bash
 enable
@@ -92,10 +88,9 @@ wr
 
 ---
 
-##  4. SWITCH TENGAH (SW-MID)
+## ⚙️ 4. SWITCH TENGAH (SW-MID)
 
-```
-bash
+```bash
 enable
 conf t
 vlan 10
@@ -122,7 +117,7 @@ wr
 
 ---
 
-## 5. ROUTER TENGAH (R-MID)
+## ⚙️ 5. ROUTER TENGAH (R-MID)
 
 ```bash
 enable
@@ -171,7 +166,7 @@ wr
 
 ---
 
-## 6. ROUTER PALING KANAN (R-RIGHT)
+## ⚙️ 6. ROUTER PALING KANAN (R-RIGHT)
 
 ```bash
 enable
@@ -211,7 +206,7 @@ wr
 
 ---
 
-## 7. SWITCH KANAN VLAN10 (SW-RIGHT-V10)
+## ⚙️ 7. SWITCH KANAN VLAN10 (SW-RIGHT-V10)
 
 ```bash
 enable
@@ -234,7 +229,7 @@ wr
 
 ---
 
-## 8. SWITCH KANAN VLAN20 (SW-RIGHT-V20)
+## ⚙️ 8. SWITCH KANAN VLAN20 (SW-RIGHT-V20)
 
 ```bash
 enable
@@ -257,28 +252,24 @@ wr
 
 ---
 
-## 9. PENGUJIAN
+## ✅ 9. PENGUJIAN
 
 ### Cek IP Interface Router
-
 ```
 show ip interface brief
 ```
 
 ### Cek DHCP Binding
-
 ```
 show ip dhcp binding
 ```
 
 ### Cek Static Route
-
 ```
 show ip route
 ```
 
 ### Uji Koneksi
-
 1. Ping dari **PC0 → Gateway 192.168.10.254**
 2. Ping dari **PC0 → PC2 (VLAN10 di router tengah)**
 3. Ping dari **PC6 → PC7 (VLAN20 kanan)**
@@ -286,20 +277,16 @@ show ip route
 
 ---
 
-## Tips Penting
-
-* Interface fisik (`fa0/0`) di router-on-a-stick **tidak boleh diberi IP** langsung.
-* Pastikan **switch ke router menggunakan trunk**.
-* Cek selalu `show vlan brief` dan `show interfaces trunk` di switch.
-* DHCP server hanya aktif jika **service dhcp** ON:
-
+## ⚠️ Tips Penting
+- Interface fisik (`fa0/0`) di router-on-a-stick **tidak boleh diberi IP** langsung.  
+- Pastikan **switch ke router menggunakan trunk**.  
+- Cek selalu `show vlan brief` dan `show interfaces trunk` di switch.  
+- DHCP server hanya aktif jika **service dhcp** ON:
   ```bash
   service dhcp
   ```
 
 ---
 
-**Selesai**
+**Selesai ✅**
 Jaringan VLAN 10 & 20 sudah saling terhubung antar-site, dengan DHCP otomatis dan routing antar-router.
-
-```
