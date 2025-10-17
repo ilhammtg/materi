@@ -1,10 +1,10 @@
 ```markdown
-# 🧠 Cisco Packet Tracer VLAN + DHCP + Static Routing Setup
+# Cisco Packet Tracer VLAN + DHCP + Static Routing Setup
 **Topologi: 3 Router + 4 Switch + 8 PC**
 
 ---
 
-## 🗺️ Topologi Ringkas
+## Topologi Ringkas
 
 ```
 
@@ -17,7 +17,7 @@
 
 ---
 
-## ⚙️ 1. IP Address Planning
+## 1. IP Address Planning
 
 | Device / Segment | VLAN | Network/Subnet | Gateway (Router) | Notes |
 |------------------|-------|----------------|------------------|--------|
@@ -33,7 +33,7 @@
 
 ---
 
-## ⚙️ 2. Konfigurasi SWITCH PALING KIRI (SW-LEFT)
+## 2. Konfigurasi SWITCH PALING KIRI (SW-LEFT)
 
 ```bash
 enable
@@ -55,7 +55,7 @@ wr
 
 ---
 
-## ⚙️ 3. Konfigurasi ROUTER PALING KIRI (R-LEFT)
+## 3. Konfigurasi ROUTER PALING KIRI (R-LEFT)
 
 ```bash
 enable
@@ -91,9 +91,10 @@ wr
 
 ---
 
-## ⚙️ 4. SWITCH TENGAH (SW-MID)
+##  4. SWITCH TENGAH (SW-MID)
 
-```bash
+```
+bash
 enable
 conf t
 vlan 10
@@ -120,7 +121,7 @@ wr
 
 ---
 
-## ⚙️ 5. ROUTER TENGAH (R-MID)
+## 5. ROUTER TENGAH (R-MID)
 
 ```bash
 enable
@@ -169,7 +170,7 @@ wr
 
 ---
 
-## ⚙️ 6. ROUTER PALING KANAN (R-RIGHT)
+## 6. ROUTER PALING KANAN (R-RIGHT)
 
 ```bash
 enable
@@ -209,7 +210,7 @@ wr
 
 ---
 
-## ⚙️ 7. SWITCH KANAN VLAN10 (SW-RIGHT-V10)
+## 7. SWITCH KANAN VLAN10 (SW-RIGHT-V10)
 
 ```bash
 enable
@@ -232,7 +233,7 @@ wr
 
 ---
 
-## ⚙️ 8. SWITCH KANAN VLAN20 (SW-RIGHT-V20)
+## 8. SWITCH KANAN VLAN20 (SW-RIGHT-V20)
 
 ```bash
 enable
@@ -255,7 +256,7 @@ wr
 
 ---
 
-## ✅ 9. PENGUJIAN
+## 9. PENGUJIAN
 
 ### Cek IP Interface Router
 
@@ -284,7 +285,7 @@ show ip route
 
 ---
 
-## ⚠️ Tips Penting
+## Tips Penting
 
 * Interface fisik (`fa0/0`) di router-on-a-stick **tidak boleh diberi IP** langsung.
 * Pastikan **switch ke router menggunakan trunk**.
@@ -297,12 +298,7 @@ show ip route
 
 ---
 
-**Selesai ✅**
+**Selesai**
 Jaringan VLAN 10 & 20 sudah saling terhubung antar-site, dengan DHCP otomatis dan routing antar-router.
 
-```
-
----
-
-Tuan mau saya buatkan file `README.md`-nya dalam format siap download (.md)?
 ```
