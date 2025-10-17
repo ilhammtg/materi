@@ -35,7 +35,8 @@
 
 ## 2. Konfigurasi SWITCH PALING KIRI (SW-LEFT)
 
-```bash
+```
+bash
 enable
 conf t
 vlan 10
