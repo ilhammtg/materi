@@ -32,16 +32,15 @@ sudo nano /etc/network/interfaces
 # Interface utama
 auto enp0s3
 iface enp0s3 inet static
-    address 192.168.56.10
+    address 192.168.10.1
     netmask 255.255.255.0
-    gateway 192.168.56.1
-    dns-nameservers 8.8.8.8
+    network 192.168.10.0
 ```
 
 > **Catatan:**
 >
 > * `enp0s3` bisa berbeda tergantung adapter VirtualBox kamu (cek dengan `ip a`).
-> * IP `192.168.56.10` adalah IP statis untuk DNS server kamu.
+> * IP `192.168.10.1` adalah IP statis untuk DNS server kamu.
 
 ### Langkah 4: Restart network service
 
@@ -104,7 +103,7 @@ zone "56.168.192.in-addr.arpa" {
 >
 > * `contoh.local` = nama domain lokal (bisa kamu ganti)
 > * `db.contoh.local` = file zona forward
-> * `db.192` = file zona reverse untuk jaringan `192.168.56.0/24`
+> * `db.192` = file zona reverse untuk jaringan `192.168.10.0/24`
 
 ---
 
@@ -131,9 +130,9 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      ns.contoh.local.
-ns      IN      A       192.168.56.10
-server  IN      A       192.168.56.10
-client  IN      A       192.168.56.11
+ns      IN      A       192.168.10.1
+server  IN      A       192.168.10.1
+client  IN      A       192.168.10.11
 ```
 
 ### File Zona Reverse
@@ -187,18 +186,18 @@ dig server.contoh.local
 nslookup client.contoh.local
 ```
 
-Jika konfigurasi benar, hasilnya akan menampilkan IP yang sesuai (`192.168.56.10` atau `192.168.56.11`).
+Jika konfigurasi benar, hasilnya akan menampilkan IP yang sesuai (`192.168.10.1` atau `192.168.10.11`).
 
 ---
 
 ## 6. Tips Tambahan
 
 * Jika DNS tidak bisa di-resolve, pastikan **adapter VirtualBox** dalam mode **Host-Only Adapter**.
-* Tambahkan IP DNS (`192.168.56.10`) ke `/etc/resolv.conf` agar sistem menggunakan DNS lokal.
+* Tambahkan IP DNS (`192.168.10.1`) ke `/etc/resolv.conf` agar sistem menggunakan DNS lokal.
 
   ```bash
   sudo nano /etc/resolv.conf
-  nameserver 192.168.56.10
+  nameserver 192.168.10.1
   ```
 * Gunakan perintah ini untuk melihat log jika ada error:
 
