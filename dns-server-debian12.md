@@ -93,7 +93,7 @@ zone "contoh.local" {
     file "/etc/bind/db.contoh.local";
 };
 
-zone "56.168.192.in-addr.arpa" {
+zone "10.168.192.in-addr.arpa" {
     type master;
     file "/etc/bind/db.192";
 };
